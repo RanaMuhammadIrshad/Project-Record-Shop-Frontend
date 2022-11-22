@@ -1,10 +1,11 @@
 // import React, { useRef } from 'react';
-import { useContext } from 'react';
+// import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MyContext } from '../context/MyContext';
+// import { MyContext } from '../context/MyContext';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Signup() {
-  const { setUser } = useContext(MyContext);
+  // const { setUser } = useContext(MyContext);
   const navigate = useNavigate();
 
   // const formRef = useRef();
@@ -48,10 +49,14 @@ export default function Signup() {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          setUser(result.user);
-          navigate('/records');
+          // setUser(result.user);
+          toast.success('Successfully signed up!');
+          setTimeout(() => {
+            navigate('/login');
+          }, 2000);
         } else {
-          alert(JSON.stringify(result.message));
+          toast.error(JSON.stringify(result.message));
+          // alert(JSON.stringify(result.message));
         }
         // console.log(result);
       });
@@ -91,6 +96,7 @@ export default function Signup() {
         <br />
         <button>Register/Signup</button>
       </form>
+      <Toaster position="top-center" />
     </div>
   );
 }
