@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext } from 'react';
 import { NavLink, Routes, Route } from 'react-router-dom';
 import Cart from './components/Cart';
+import EditProfileUser from './components/EditProfileUser';
 import HomePage from './components/HomePage';
 import Login from './components/Login';
 import Orders from './components/Orders';
@@ -56,6 +57,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/editprofileuser" element={<EditProfileUser />} />
       </Routes>
     </div>
   );
