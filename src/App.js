@@ -10,13 +10,15 @@ import Profile from './components/Profile';
 import Records from './components/Records';
 import Signup from './components/Signup';
 import { MyContext } from './context/MyContext';
+import classes from './App.module.css';
+import AdminPanel from './components/AdminPanel';
 
 function App() {
   const { cart, user } = useContext(MyContext);
   return (
-    <div className="App">
-      <ul>
-        <li>
+    <div className={classes.body}>
+      <ul className={classes.unorderedList}>
+        <li className={classes.listItems}>
           <NavLink to="/">Home </NavLink>
         </li>
         <li>
@@ -42,6 +44,12 @@ function App() {
           </>
         )}
 
+        {user && user.role === 'admin' && (
+          <li>
+            <NavLink to="/admin">Admin Panel</NavLink>
+          </li>
+        )}
+
         <li>
           <NavLink to="/cart">
             Cart <sup>{cart.length}</sup>{' '}
@@ -50,6 +58,7 @@ function App() {
       </ul>
 
       <Routes>
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/records" element={<Records />} />
         <Route path="/orders" element={<Orders />} />

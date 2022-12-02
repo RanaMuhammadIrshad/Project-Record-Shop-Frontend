@@ -7,11 +7,12 @@ export default function Container(props) {
   const [records, setRecords] = useState([]);
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState(null);
+  const [orders, setOrders] = useState([]);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:4000/records')
+    fetch('/records')
       .then((res) => res.json())
       .then((result) => {
         // console.log(result);
@@ -20,7 +21,7 @@ export default function Container(props) {
 
     const token = localStorage.getItem('token');
     if (token) {
-      fetch('http://localhost:4000/users/checkusertoken', {
+      fetch('/users/checkusertoken', {
         method: 'GET',
         headers: { token: token },
       })
@@ -33,11 +34,20 @@ export default function Container(props) {
           }
         });
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <MyContext.Provider
-      value={{ records, setRecords, cart, setCart, user, setUser }}
+      value={{
+        records,
+        setRecords,
+        cart,
+        setCart,
+        user,
+        setUser,
+        orders,
+        setOrders,
+      }}
     >
       {props.children}
     </MyContext.Provider>

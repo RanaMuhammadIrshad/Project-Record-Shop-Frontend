@@ -1,0 +1,27 @@
+.center {
+  text-align: center;
+  padding: 2rem;
+  background-color: rgb(153, 180, 172);
+}
+
+.order {
+  width: 20%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: green;
+  margin-top: 1rem;
+}
+
+.button {
+  width: 5%;
+  padding: 0.2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: rgb(142, 184, 142);
+  margin: 1rem;
+}
+
+.img {
+  width: 250px;
+}

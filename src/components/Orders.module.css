@@ -1,0 +1,35 @@
+.center {
+  text-align: center;
+  padding: 2rem;
+  background-color: rgb(153, 180, 172);
+}
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.container {
+  background-color: bisque;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin: 1rem;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  height: auto;
+}
+
+.images {
+  width: 50%;
+}
+
+.delOrder {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: rgb(142, 184, 142);
+  margin: 1rem;
+}

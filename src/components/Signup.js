@@ -3,6 +3,7 @@
 import { useNavigate } from 'react-router-dom';
 // import { MyContext } from '../context/MyContext';
 import toast, { Toaster } from 'react-hot-toast';
+import classes from './Signup.module.css';
 
 export default function Signup() {
   // const { setUser } = useContext(MyContext);
@@ -40,7 +41,7 @@ export default function Signup() {
     const data = new FormData(event.target);
     // send data to backend
 
-    fetch('http://localhost:4000/users', {
+    fetch('/users', {
       method: 'POST',
       // headers: { 'Content-Type': 'application/json' }, // method:1
       // headers: { 'Content-Type': 'multipart/form-data' }, // method:2
@@ -71,30 +72,50 @@ export default function Signup() {
 
   return (
     <div>
-      <h1>Login/Register User</h1>
+      <h1 className={classes.center}>Signup User</h1>
       {/* <form onSubmit={registerUser} ref={formRef}> */}
-      <form onSubmit={registerUser}>
+      <form className={classes.form} onSubmit={registerUser}>
         <label>
-          First Name: <input type="text" name="firstName" required />
+          First Name:
+          <input
+            className={classes.input}
+            type="text"
+            name="firstName"
+            required
+          />
         </label>
         <br />
         <label>
-          Last Name: <input type="text" name="lastName" required />
+          Last Name:{' '}
+          <input
+            className={classes.input}
+            type="text"
+            name="lastName"
+            required
+          />
         </label>
         <br />
         <label>
-          Email: <input type="email" name="email" required />
+          Email:{' '}
+          <input className={classes.input} type="email" name="email" required />
         </label>
         <br />
         <label>
-          Password: <input type="password" name="password" required />
+          Password:{' '}
+          <input
+            className={classes.input}
+            type="password"
+            name="password"
+            required
+          />
         </label>
         <br />
         <label>
-          Profile Image: <input type="file" name="image" />
+          Profile Image:{' '}
+          <input className={classes.input} type="file" name="image" />
         </label>
         <br />
-        <button>Register/Signup</button>
+        <button className={classes.signup}>Register/Signup</button>
       </form>
       <Toaster position="top-center" />
     </div>

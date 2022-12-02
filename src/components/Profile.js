@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 import { useNavigate } from 'react-router-dom';
+import classes from './Profile.module.css';
 
 export default function Profile() {
   const { user, setUser } = useContext(MyContext);
@@ -16,30 +17,43 @@ export default function Profile() {
     navigate('/editprofileuser');
   };
 
+  const deleteUserAccount = () => {
+    fetch(`/users/${user._id}`, {
+      method: 'DELETE',
+      headers: { token: localStorage.getItem('token') },
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          setUser(null);
+          localStorage.removeItem('token');
+          navigate('/signup');
+        }
+      });
+  };
+
   return (
-    <div>
+    <div className={classes.center}>
       <h1>Profile</h1>
       {user && (
         <>
           <h2>{user.fullName}</h2>
           <p>{user.email}</p>
-          <p>{user.firstName}</p>
-          <img src={user.profileImage} width="300" alt="profileImage" />
-          <h2>User Orders </h2>
-          <ul>
-            {user.orders.map((order) => {
-              return (
-                <div key={order._id}>
-                  <h3>{order._id}</h3>
-                  <button>delete order</button>
-                </div>
-              );
-            })}
-          </ul>
+          <img
+            className={classes.img}
+            src={user.profileImage}
+            alt="profileImage"
+          />
 
-          <button onClick={editProfile}>Update Profile</button>
-          <button onClick={logout}>logout</button>
-          <button>Delete User</button>
+          <button className={classes.buttons} onClick={editProfile}>
+            Update Profile
+          </button>
+          <button className={classes.buttons} onClick={logout}>
+            Logout
+          </button>
+          <button className={classes.buttons} onClick={deleteUserAccount}>
+            Delete User
+          </button>
         </>
       )}
     </div>

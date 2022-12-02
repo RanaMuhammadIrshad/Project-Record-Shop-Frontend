@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../context/MyContext';
+import classes from './Login.module.css';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ export default function Login() {
 
   const loginUser = (e) => {
     e.preventDefault();
-    fetch('http://localhost:4000/users/login', {
+    fetch('/users/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -41,18 +42,25 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Login</h1>
+      <h1 className={classes.center}>Login</h1>
       <Toaster position="top-center" />
-      <form onSubmit={loginUser}>
+      <form className={classes.form} onSubmit={loginUser}>
         <label>
-          Email: <input type="email" name="email" required />
+          Email:
+          <input className={classes.input} type="email" name="email" required />
         </label>
         <br />
         <label>
-          Password: <input type="password" name="password" required />
+          Password:{' '}
+          <input
+            className={classes.input}
+            type="password"
+            name="password"
+            required
+          />
         </label>
         <br />
-        <button>Login</button>
+        <button className={classes.login}>Login</button>
       </form>
     </div>
   );

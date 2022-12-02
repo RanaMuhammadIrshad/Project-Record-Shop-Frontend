@@ -3,6 +3,7 @@ import { useContext } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../context/MyContext';
+import classes from './EditProfileUser.module.css';
 
 export default function EditProfileUser() {
   const { user, setUser } = useContext(MyContext);
@@ -12,7 +13,7 @@ export default function EditProfileUser() {
   const sendUpdateRequest = (e) => {
     e.preventDefault();
     const data = new FormData(e.target);
-    fetch(`http://localhost:4000/users/${user._id}`, {
+    fetch(`/users/${user._id}`, {
       method: 'PATCH',
       headers: { token: localStorage.getItem('token') },
       body: data,
@@ -34,29 +35,49 @@ export default function EditProfileUser() {
   return (
     <div>
       <Toaster position="top-center" />
-      <h1>Profile Editing</h1>
-      <form onSubmit={sendUpdateRequest}>
+      <h1 className={classes.center}>Profile Editing</h1>
+      <form className={classes.form} onSubmit={sendUpdateRequest}>
         <label>
           First Name:{' '}
-          <input type="text" name="firstName" defaultValue={user.firstName} />
+          <input
+            className={classes.input}
+            type="text"
+            name="firstName"
+            defaultValue={user.firstName}
+          />
         </label>
         <br />
         <label>
           Last Name:{' '}
-          <input type="text" name="lastName" defaultValue={user.lastName} />
+          <input
+            className={classes.input}
+            type="text"
+            name="lastName"
+            defaultValue={user.lastName}
+          />
         </label>
         <br />
         <label>
           Password:{' '}
-          <input type="password" name="password" placeholder={'*********'} />
+          <input
+            className={classes.input}
+            type="password"
+            name="password"
+            placeholder={'*********'}
+          />
         </label>
         <br />
         <label>
-          Profile Image: <input type="file" name="image" />
-          <img src={user.profileImage} width="100" alt="profileImage" />
+          Profile Image:{' '}
+          <input className={classes.input} type="file" name="image" />
+          <img
+            className={classes.img}
+            src={user.profileImage}
+            alt="profileImage"
+          />
         </label>
         <br />
-        <button>save</button>
+        <button className={classes.save}>save</button>
       </form>
     </div>
   );

@@ -1,0 +1,30 @@
+.center {
+  text-align: center;
+  padding: 2rem;
+  background-color: rgb(153, 180, 172);
+}
+
+.form {
+  width: 25%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  background-color: rgb(170, 162, 151);
+  font-size: 1.5rem;
+}
+
+.signup {
+  width: 50%;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: green;
+  margin-left: 25%;
+  margin-top: 1rem;
+}
